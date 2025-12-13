@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Stardew Valley Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+            font-family: "Micro 5", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("assets/img/LatarProfil.JPG");
+            background-size: cover;
+            background-position: center;
+            image-rendering: pixelated;
+        }
+
+        /* --- MODAL WRAPPER (For Layering) --- */
+        .modal-wrapper {
+            position: relative;
+            width: 800px;
+            height: 500px;
+        }
+
+        /* --- MODAL CONTAINER --- */
+        .profile-modal {
+            width: 100%;
+            height: 78%;
+            background-image: url("assets/img/PageProfile.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 60px;
+            /* Sesuaikan padding agar konten pas di tengah gambar */
+            box-sizing: border-box;
+            image-rendering: pixelated;
+        }
+
+        /* --- TABS (Hiii & Profile!) --- */
+        .tab {
+            position: absolute;
+            /* Turunkan sedikit agar menimpa border modal */
+            top: -28px;
+            background-color: #FFCF85;
+            border: 4px solid #C07C55;
+            padding: 10px 20px 5px 20px;
+            /* Tambah padding bawah */
+            font-size: 36px;
+            color: #5e2c04;
+            z-index: 10;
+            /* Pastikan di atas gambar modal */
+        }
+
+        .tab-left {
+            left: 20px;
+            width: 80px;
+            text-align: center;
+        }
+
+        .tab-right {
+            right: 40px;
+            /* Geser lebih ke tengah dikit */
+            width: 150px;
+            /* Lebih lebar sesuai desain */
+            text-align: center;
+            background-color: #FFCF85;
+            border-color: #A9500D;
+            height: 55px;
+            /* Lebih tinggi */
+            top: -50px;
+            /* Naik lebih tinggi */
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            /* Font lebih besar */
+        }
+
+        /* --- CONTENT LAYOUT --- */
+        .content {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+        }
+
+        /* --- LEFT COLUMN (PHOTO) --- */
+        .left-col {
+            position: absolute;
+            left: 34px;
+            top: 15%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            background-color: #d49b68;
+            border: 4px solid #8b4513;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name-display {
+            font-size: 36px;
+            color: #5e2c04;
+        }
+
+        /* --- RIGHT COLUMN (DETAILS) --- */
+        .right-col {
+            position: absolute;
+            right: 120px;
+            top: 12%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #5e2c04;
+        }
+
+        .detail-name {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .detail-email {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .change-pass {
+            font-size: 18px;
+            text-decoration: underline;
+            cursor: pointer;
+            color: #8b4513;
+        }
+
+        .change-pass:hover {
+            color: #a0522d;
+        }
+
+        /* --- FOOTER BUTTONS --- */
+        .footer {
+            position: absolute;
+            bottom: 180px;
+            right: 80px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .btn {
+            background-color: #FFCF85;
+            border: 3px solid #C07C55;
+            color: #5e2c04;
+            padding: 0px 62px;
+            font-family: "Micro 5", sans-serif;
+            font-size: 36px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0 #C07C55;
+        }
+
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="modal-wrapper">
+        <!-- TABS (Siblings of modal for better layering) -->
+        <div class="tab tab-left">Hiiii</div>
+        <div class="tab tab-right">Profile!</div>
+
+        <div class="profile-modal">
+            <div class="content">
+                <!-- LEFT COLUMN -->
+                <div class="left-col">
+                    <div class="photo-frame">
+                        <img src="assets/img/FotoProfil.jpg" alt="Profile Photo" />
+                    </div>
+                    <div class="name-display">Dera Amelia</div>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <div class="right-col">
+                    <div class="detail-name">Dera Amelia</div>
+                    <div class="detail-email">dera.amelia@mhs.unsoed.ac.id</div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="footer">
+                <button class="btn" onclick="history.back()">Back</button>
+                <button class="btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formData = new FormData();
+            formData.append('action', 'get_profile');
+
+            fetch('auth.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const fullName = `${data.user.first_name} ${data.user.last_name}`;
+                        document.querySelector('.name-display').innerText = fullName;
+                        document.querySelector('.detail-name').innerText = fullName;
+                        document.querySelector('.detail-email').innerText = data.user.email;
+
+                        // Set profile picture based on gender
+                        const profileImg = document.querySelector('.photo-frame img');
+                        if (data.user.gender && data.user.gender.toLowerCase() === 'male') {
+                            profileImg.src = 'assets/img/FotoProfileMale.webp';
+                        } else {
+                            profileImg.src = 'assets/img/FotoProfilFemale.jpg';
+                        }
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        function logout() {
+            const formData = new FormData();
+            formData.append('action', 'logout');
+            fetch('auth.php', { method: 'POST', body: formData })
+                .then(() => window.location.href = 'login.html');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage - Stardew Valley Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+            font-family: "Micro 5", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("assets/img/LatarProfil.JPG");
+            background-size: cover;
+            background-position: center;
+            image-rendering: pixelated;
+        }
+
+        /* --- MODAL WRAPPER (For Layering) --- */
+        .modal-wrapper {
+            position: relative;
+        }
+
+        /* --- MODAL CONTAINER --- */
+        .profile-modal {
+            background-color: rgba(248, 186, 101, 0.85);
+            border: 4px solid #A9500D;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 20px;
+            box-sizing: border-box;
+            image-rendering: pixelated;
+            width: 620px;
+        }
+
+        /* --- TAB (Haii User!!) --- */
+        .tab {
+            position: absolute;
+            bottom: 220px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(248, 186, 101, 0.85);
+            border: 4px solid #A9500D;
+            padding: 10px 40px 5px 40px;
+            font-size: 36px;
+            color: #5e2c04;
+            z-index: 10;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        /* --- BUTTONS CONTAINER --- */
+        .buttons-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- MENU BUTTONS --- */
+        .menu-btn {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        .menu-btn:active {
+            transform: scale(1.05) translate(2px, 2px);
+            box-shadow: 2px 2px 0 #8b4513;
+        }
+
+        .menu-btn img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal-wrapper">
+        <!-- TAB -->
+        <div class="tab" id="greetingTab">Haii User!!</div>
+
+        <div class="profile-modal">
+            <div class="buttons-container">
+                <!-- Left Button: Advanced Options -->
+                <div class="menu-btn" onclick="window.location.href='profile.html'">
+                    <img src="assets/img/Advanced_Options_Button.png" alt="Advanced Options" />
+                </div>
+
+                <!-- Center Button: Mining Skill -->
+                <div class="menu-btn" onclick="window.location.href='inventory.html'">
+                    <img src="assets/img/Mining_Skill_Icon.png" alt="Mining Skill" />
+                </div>
+
+                <!-- Right Button: Options Tab -->
+                <div class="menu-btn" onclick="window.location.href='mining.html'">
+                    <img src="assets/img/Optionstab.png" alt="Options" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formData = new FormData();
+            formData.append('action', 'get_profile');
+
+            fetch('auth.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const fullName = `${data.user.first_name} ${data.user.last_name}`;
+                        document.getElementById('greetingTab').innerText = `Haii ${fullName}!!`;
+                    } else {
+                        // If not logged in, maybe redirect or just keep "User"
+                        // window.location.href = 'login.html'; 
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Stardew Valley</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Piedra&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      background-image: url("assets/img/latar.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow-y: auto;
+
+      image-rendering: pixelated;
+      font-family: "Micro 5", sans-serif;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0;
+    }
+
+    /* --- KOTAK REGISTER --- */
+    .register-box {
+      background-color: rgba(251, 210, 130, 0.85);
+      width: 512px;
+      height: auto;
+      padding: 40px 30px;
+      border: 5px solid #a9500d;
+      border-radius: 15px;
+      box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.25);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* --- STYLE INPUT & FORM --- */
+    .row-half {
+      width: 100%;
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+    }
+
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+
+    /* Ikon di Kiri (Email/Pass) */
+    .input-icon {
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: auto;
+      z-index: 10;
+      image-rendering: pixelated;
+      pointer-events: none;
+      /* Tambahan: biar klik tembus */
+    }
+
+    .input-dropdown {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: auto;
+      z-index: 10;
+      image-rendering: pixelated;
+      pointer-events: none;
+      /* PENTING: Biar bisa diklik tembus */
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 15px 10px 85px;
+      font-family: "Micro 5", sans-serif;
+      font-size: 32px;
+      letter-spacing: 1px;
+      color: #7f3701;
+      background: linear-gradient(to right,
+          #bf7c2a 0px,
+          #bf7c2a 70px,
+          #8b4513 70px,
+          #8b4513 73px,
+          #f8ba65 73px);
+
+      border: 3px solid #8b4513;
+      border-radius: 50px;
+      outline: none;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s;
+    }
+
+    .form-input-simple {
+      width: 100%;
+      padding: 10px 20px;
+      font-family: "Micro 5", sans-serif;
+      font-size: 28px;
+      color: #5e2c04;
+      background-color: #f8ba65;
+      border: 3px solid #8b4513;
+      border-radius: 50px;
+      outline: none;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-input:focus {
+      background: linear-gradient(to right,
+          #bf7c2a 0px,
+          #bf7c2a 70px,
+          #8b4513 70px,
+          #8b4513 73px,
+          #ffcc80 73px);
+      box-shadow: 0 0 8px rgba(139, 69, 19, 0.5);
+    }
+
+    .form-input-simple:focus {
+      background-color: #ffcc80;
+      box-shadow: 0 0 8px rgba(139, 69, 19, 0.5);
+    }
+
+    ::placeholder {
+      color: #8b4513;
+      opacity: 0.7;
+    }
+
+    .btn-signup {
+      background-color: #d87802;
+      color: white;
+      font-family: "Micro 5", sans-serif;
+      font-size: 32px;
+      padding: 8px 0;
+      width: 100%;
+      border: none;
+      border-radius: 35px;
+      cursor: pointer;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+      transition: transform 0.1s;
+      margin-top: 10px;
+    }
+
+    .btn-signup:hover {
+      background-color: #e68a2e;
+      transform: scale(1.02);
+    }
+
+    .btn-signup:active {
+      transform: scale(0.95);
+      box-shadow: 0px 2px 0px #8b4513;
+      transform: translateY(2px);
+    }
+
+    .login-link {
+      font-size: 22px;
+      color: #000000;
+      margin-top: 5px;
+    }
+
+    .login-link a {
+      color: #8b4513;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    select.form-input-simple {
+      appearance: none;
+      text-align: left;
+      cursor: pointer;
+      padding-right: 45px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="register-box">
+    <form style="
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          align-items: center;
+        " id="registerForm">
+      <div class="row-half">
+        <input type="text" name="first_name" class="form-input-simple" placeholder="First Name" required />
+        <input type="text" name="last_name" class="form-input-simple" placeholder="Last Name" required />
+      </div>
+
+      <div class="input-group">
+        <img src="assets/img/avatarPlaceholder.png" alt="Email" class="input-icon" />
+        <input type="email" name="email" class="form-input" placeholder="Input your email" required />
+      </div>
+
+      <div class="input-group">
+        <img src="assets/img/lock.png" alt="Pass" class="input-icon" />
+        <input type="password" name="password" class="form-input" placeholder="Create password" required />
+      </div>
+
+      <div class="input-group">
+        <img src="assets/img/lock.png" alt="Confirm" class="input-icon" />
+        <input type="password" name="confirm_password" class="form-input" placeholder="Confirm password" required />
+      </div>
+
+      <div class="input-group">
+        <img src="assets/img/Dropdown.png" alt="Dropdown" class="input-dropdown" />
+        <select name="gender" class="form-input-simple">
+          <option value="" disabled selected>Choose your gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-signup">Sign Up</button>
+
+      <div class="login-link">
+        Already have an account? <a href="login.html">Sign In</a>
+      </div>
+    </form>
+
+    <script>
+      document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        formData.append('action', 'register');
+
+        fetch('auth.php', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'success') {
+              alert('Registration successful! Please login.');
+              window.location.href = 'login.html';
+            } else {
+              alert(data.message);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      });
+    </script>
+  </div>
+</body>
+
+</html>

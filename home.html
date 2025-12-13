@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stardew Valley Home</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      background-image: url("assets/img/latar.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      image-rendering: pixelated;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-img {
+      width: 600px;
+      max-width: 90%;
+      height: auto;
+      filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.4));
+      animation: floatLogo 3s ease-in-out infinite;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 100;
+    }
+
+    .btn-img {
+      display: block;
+      width: 276px;
+      height: auto;
+      cursor: pointer;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+      /* Shadow luar */
+      transition: transform 0.2s ease;
+    }
+
+    .btn-img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.6)) brightness(1.1);
+    }
+
+    @keyframes floatLogo {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .button-group {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .logo-img {
+        width: 80%;
+      }
+
+      .btn-img {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo-wrapper">
+      <img src="assets/img/logoStardewValley1.png" alt="Stardew Valley Logo" class="logo-img" />
+    </div>
+
+    <div class="button-group">
+      <a href="login.html">
+        <img src="assets/img/Sign In.png" alt="Sign In" class="btn-img" />
+      </a>
+
+      <a href="register.html">
+        <img src="assets/img/Sign Up.png" alt="Sign Up" class="btn-img" />
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

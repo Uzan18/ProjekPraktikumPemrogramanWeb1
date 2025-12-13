@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Stardew Valley</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Piedra&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      background-image: url("assets/img/latar.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      image-rendering: pixelated;
+      font-family: "Micro 5", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      background-color: rgba(251, 210, 130, 0.85);
+      width: 536px;
+      height: 372px;
+      padding: 70px 25px 29px 25px;
+      border: 5px solid #a9500d;
+      border-radius: 15px;
+      box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .input-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .input-group {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: auto;
+      z-index: 10;
+      image-rendering: pixelated;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 15px 12px 85px;
+      font-family: "Micro 5", sans-serif;
+      font-size: 32px;
+      letter-spacing: 1px;
+      color: #7f3701;
+      background: linear-gradient(to right,
+          #bf7c2a 0px,
+          #bf7c2a 70px,
+          #7f3701 70px,
+          #7f3701 73px,
+          #f8ba65 73px);
+      border: 3px solid #7f3701;
+      border-radius: 50px;
+      outline: none;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-input:focus {
+      background: linear-gradient(to right,
+          #bf7c2a 0px,
+          #bf7c2a 70px,
+          #8b4513 70px,
+          #8b4513 73px,
+          #ffcc80 73px);
+      box-shadow: 0 0 8px rgba(139, 69, 19, 0.5);
+    }
+
+    ::placeholder {
+      color: #8b4513;
+      opacity: 0.7;
+      font-size: 28px;
+    }
+
+    .btn-signin {
+      background-color: #d87802;
+      color: white;
+      font-family: "Micro 5", sans-serif;
+      font-size: 32px;
+      padding: 8px 60px;
+      border: none;
+      border-radius: 35px;
+      cursor: pointer;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+      transition: transform 0.1s;
+    }
+
+    .btn-signin:hover {
+      background-color: #e68a2e;
+      transform: scale(1.05);
+    }
+
+    .btn-signin:active {
+      transform: scale(0.95);
+      box-shadow: 0px 2px 0px #8b4513;
+      transform: translateY(2px);
+    }
+
+    .login-link {
+      font-size: 22px;
+      color: #000000;
+      margin-top: 5px;
+    }
+
+    .login-link a {
+      color: #8b4513;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-box">
+    <form class="login-form" id="loginForm">
+      <div class="input-container">
+        <div class="input-group">
+          <img src="assets/img/avatarPlaceholder.png" alt="User Icon" class="input-icon" />
+          <input type="email" name="email" class="form-input" placeholder="Input your email" required />
+        </div>
+
+        <div class="input-group">
+          <img src="assets/img/lock.png" alt="Lock Icon" class="input-icon" />
+          <input type="password" name="password" class="form-input" placeholder="Input your password" required />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-signin">Sign In</button>
+      <div class="login-link">
+        Don't have account? <a href="register.html">Sign Up</a>
+      </div>
+    </form>
+
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        formData.append('action', 'login');
+
+        fetch('auth.php', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'success') {
+              window.location.href = 'homepage.html';
+            } else {
+              alert(data.message);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      });
+    </script>
+  </div>
+</body>
+
+</html>
